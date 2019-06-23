@@ -1,4 +1,6 @@
-const path = require('path')
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
     entry: {
         'index': './src/index.js',
@@ -12,7 +14,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -21,10 +23,44 @@ module.exports = {
                                 require('autoprefixer')()
                             ]
                         }
+                    },
+                ]
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')()
+                            ]
+                        }
+                    },
+                    'less-loader'
+                ]
+            },
+            {
+                test: /\.jpg|png|gif$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: '/images',
+                            publicPath: '//xxxcdn.com/images',
+                        }
                     }
                 ]
             }
         ]
     },
-    plugins: []
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'style.css',
+            chunkFilename: '[id].css'
+        })
+    ]
 }
