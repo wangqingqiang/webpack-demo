@@ -9,6 +9,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
     },
+    devServer: {
+        contentBase: 'dist',
+        open: true,
+    },
     module: {
         rules: [
             {
@@ -46,11 +50,12 @@ module.exports = {
                 test: /\.jpg|png|gif$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: '/images',
-                            publicPath: '//xxxcdn.com/images',
+                            limit: 10240,
+                            outputPath: 'images',
+                            // publicPath: '//xxxcdn.com/images',
                         }
                     }
                 ]
