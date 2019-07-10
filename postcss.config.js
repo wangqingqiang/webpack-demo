@@ -1,0 +1,5 @@
+{
+    plugins: [
+        require('autoprefixer')(),
+    ]
+}

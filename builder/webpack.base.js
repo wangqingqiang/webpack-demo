@@ -1,6 +1,8 @@
 const pwd = process.cwd();
 const path = require('path');
+const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -8,19 +10,41 @@ module.exports = {
     },
     output: {
         path: path.resolve(pwd, './dist'),
-        filename: '[name].bundle.js',
+        filename: '[name].[hash].js',
     },
     module: {
         rules: [
             {
+                test: /\.js$/,
+                loader: 'babel-loader'
+            },
+            {
                 test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif)$/,
                 use: {
-                    loader: 'vue-loader'
+                    loader: 'url-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        limit: 10240,
+                        outputPath: './images',
+                        // publicPath: '//www.cdn.com/images'
+                    }
                 }
             }
         ]
     },
     plugins: [
+        new webpack.ProgressPlugin(),
         new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(pwd, './src/template.ejs'),
+            filename: 'index.html',
+            templateParameters: {
+                title: '这是首页'
+            }
+        })
     ]
 }
