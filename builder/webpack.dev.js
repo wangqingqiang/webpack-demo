@@ -40,14 +40,7 @@ module.exports = WebpackMerge(WebpackBase, {
                             importLoaders: 2,
                         }
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: [
-                                require('autoprefixer')(),
-                            ]
-                        }
-                    },
+                    'postcss-loader',
                     'less-loader'
                 ]
             },
