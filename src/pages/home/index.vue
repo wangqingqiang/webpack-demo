@@ -1,5 +1,5 @@
 <template>
-    <div class="home">这里是主页</div>
+    <div class="home">这里是主页1</div>
 </template>
 <script>
     export default {};

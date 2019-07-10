@@ -46,5 +46,8 @@ module.exports = {
                 title: '这是首页'
             }
         })
-    ]
+    ],
+    optimization: {
+        usedExports: true,
+    }
 }

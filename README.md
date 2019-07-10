@@ -22,6 +22,24 @@ v15版本后用法改变：
         new VueLoaderPlugin()
       ]
     }
-  ```
+    ```
+- autoprefixer  
+  必须要设置浏览器范围！！
+
+## webpack.ProgressPlugin
 ## html-webpack-plugin
 ## clean-webpack-plugin
+## webpack.HotModuleReplacementPlugin
+## polyfill
+
+## resolve配置
+## optimization:
+  - tree shaking(usedExports)
+  - 压缩js/css(minimizer)
+## 多页
+## code split
+  - splitChunks
+  - 提取引导模块
+  - 动态导入 import()
+
+## 性能优化

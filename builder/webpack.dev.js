@@ -12,6 +12,7 @@ module.exports = WebpackMerge(WebpackBase, {
         contentBase: path.resolve(pwd, './dist'),
         // port: 8888,
         hot: true,
+        hotOnly: true,
         open: true,
         overlay: true,
     },

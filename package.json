@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/wangqingqiang/webpack-demo#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7"
   },
