@@ -1,13 +1,27 @@
 <template>
-    <div class="home">这里是主页1</div>
+    <div class="home">
+        <Header></Header>
+        <div class="main">
+            <router-view></router-view>
+        </div>
+        <Footer></Footer>
+    </div>
 </template>
 <script>
-    export default {};
+    import Header from '@/components/header';
+    import Footer from '@/components/footer';
+
+    export default {
+        components: {
+            Header,
+            Footer,
+        }
+    };
 </script>
 <style lang="less">
 .home{
-    transform: translateY(10px);
-    display: flex;
+    .main {
+        min-height: 200px;
+    }
 }
-body{color: red}
 </style>

@@ -12,6 +12,12 @@ module.exports = {
         path: path.resolve(pwd, './dist'),
         filename: '[name].[hash].js',
     },
+    resolve: {
+        alias: {
+            '@': path.resolve(pwd, 'src'),
+        },
+        extensions: ['.js', '.vue']
+    },
     module: {
         rules: [
             {

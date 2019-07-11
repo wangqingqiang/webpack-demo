@@ -40,6 +40,11 @@ v15版本后用法改变：
 ## code split
   - splitChunks
   - 提取引导模块
-  - 动态导入 import()
 
 ## 性能优化
+  - 动态导入 import()
+  - optimization
+    - tree shaking(usedExports)
+    - 压缩
+      - js: terser-webpack-plugin
+      - css: optimize-css-assets-webpack-plugin
