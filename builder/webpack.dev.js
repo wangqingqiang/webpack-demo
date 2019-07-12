@@ -5,7 +5,7 @@ const WebpackMerge = require('webpack-merge');
 const webpack = require('webpack');
 
 
-module.exports = WebpackMerge(WebpackBase, {
+module.exports = WebpackMerge(WebpackBase(false), {
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
@@ -18,37 +18,6 @@ module.exports = WebpackMerge(WebpackBase, {
     },
     output: {
         publicPath: '/'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                        }
-                    },
-                    'postcss-loader'
-                ]
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                        }
-                    },
-                    'postcss-loader',
-                    'less-loader'
-                ]
-            },
-        ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
