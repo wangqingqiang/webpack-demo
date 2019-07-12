@@ -16,6 +16,9 @@ module.exports = WebpackMerge(WebpackBase, {
         open: true,
         overlay: true,
     },
+    output: {
+        publicPath: '/'
+    },
     module: {
         rules: [
             {

@@ -7,7 +7,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = WebpackMerge(WebpackBase, {
     mode: 'production',
-    devtool: 'cheap-module-source-map',
+    // devtool: 'cheap-module-source-map',
+    output: {
+        publicPath: '/dist/'
+    },
     module: {
         rules: [
             {
@@ -42,7 +45,7 @@ module.exports = WebpackMerge(WebpackBase, {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: '[name]/style.css',
         }),
     ]
 })

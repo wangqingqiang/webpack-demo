@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config ./builder/webpack.prod.js",
+    "build": "webpack --env.production --config ./builder/webpack.prod.js",
     "dev": "webpack-dev-server --config ./builder/webpack.dev.js"
   },
   "repository": {
@@ -46,5 +46,6 @@
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2",
     "webpack-merge": "^4.2.1"
-  }
+  },
+  "browserslist": ["> 1%", "last 2 versions"]
 }

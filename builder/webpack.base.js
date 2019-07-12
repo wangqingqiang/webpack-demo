@@ -3,14 +3,15 @@ const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { entryMap, htmlsConfig } = require('./getEntrys');
 
 module.exports = {
-    entry: {
-        index: path.resolve(pwd, './src/pages/home/index.js'),
-    },
+    stats: { children: false },
+    entry: entryMap,
     output: {
         path: path.resolve(pwd, './dist'),
-        filename: '[name].[hash].js',
+        filename: '[name]/index.js',
+        chunkFilename: '[name].js',
     },
     resolve: {
         alias: {
@@ -22,6 +23,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             },
             {
@@ -45,15 +47,28 @@ module.exports = {
     plugins: [
         new webpack.ProgressPlugin(),
         new VueLoaderPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(pwd, './src/template.ejs'),
-            filename: 'index.html',
-            templateParameters: {
-                title: '这是首页'
-            }
-        })
+        ...htmlsConfig
     ],
     optimization: {
         usedExports: true,
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    minSize: 0,
+                    minChunks: 2, // 最少引用次数
+                    priority: 10, // 优先级
+                    name: 'vendor',
+                },
+                common: {
+                    chunks: 'all',
+                    minSize: 0,
+                    minChunks: 2,
+                    priority: 1,
+                    name: 'common',
+                }
+            }
+        }
     }
 }

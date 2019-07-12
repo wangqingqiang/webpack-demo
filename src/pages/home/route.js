@@ -9,7 +9,7 @@ const routes = [
     },{
         name: 'mine',
         path: '/mine',
-        component: () => import(/* webpackPrefetch: true */'./modules/mine')
+        component: () => import(/* webpackPrefetch: true, webpackChunkName: 'mine' */'./modules/mine')
     },{
         path: '/',
         redirect: 'home',
